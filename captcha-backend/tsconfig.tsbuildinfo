@@ -1,0 +1,1 @@
+{"root":["./src/config.ts","./src/index.ts","./src/models/user.ts","./src/routes/captcha.ts","./src/utils/captchagenerator.ts","./src/utils/captchaimagegenerator.ts","./src/utils/database.ts"],"version":"5.6.3"}
