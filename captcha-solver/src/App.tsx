@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     const startSession = async () => {
-      const response = await axios.post("http://localhost:5000/api/captcha/start");
+      const response = await axios.post("https://captchasolver.onrender.com/api/captcha/start");
       setUserId(response.data.userId);
       setCaptcha(response.data.captcha);
       setTimer(response.data.timeout / 1000); 
@@ -36,7 +36,7 @@ function App() {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/captcha/submit", {
+      const response = await axios.post("https://captchasolver.onrender.com/api/captcha/submit", {
         userId,
         answer: input,
       });
@@ -54,7 +54,7 @@ function App() {
 
   const skipCaptcha = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/captcha/skip", { userId });
+      const response = await axios.post("https://captchasolver.onrender.com/api/captcha/skip", { userId });
       setCaptcha(response.data.captcha);
       setTimer(response.data.timeout / 1000); 
       setError(null);
