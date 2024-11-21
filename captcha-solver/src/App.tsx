@@ -12,9 +12,12 @@ function App() {
   const [skippedCount, setSkippedCount] = useState<number>(0);
   const [timer, setTimer] = useState<number>(30); 
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     const startSession = async () => {
-      const response = await axios.post("https://captchasolver.onrender.com/api/captcha/start");
+      // console.log(apiUrl);
+      const response = await axios.post(`${apiUrl}/api/captcha/start`);
       setUserId(response.data.userId);
       setCaptcha(response.data.captcha);
       setTimer(response.data.timeout / 1000); 
@@ -36,7 +39,8 @@ function App() {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("https://captchasolver.onrender.com/api/captcha/submit", {
+      // console.log(apiUrl);
+      const response = await axios.post(`${apiUrl}/api/captcha/submit`, {
         userId,
         answer: input,
       });
@@ -54,7 +58,8 @@ function App() {
 
   const skipCaptcha = async () => {
     try {
-      const response = await axios.post("https://captchasolver.onrender.com/api/captcha/skip", { userId });
+      // console.log(apiUrl);
+      const response = await axios.post(`${apiUrl}/api/captcha/skip`, { userId });
       setCaptcha(response.data.captcha);
       setTimer(response.data.timeout / 1000); 
       setError(null);
